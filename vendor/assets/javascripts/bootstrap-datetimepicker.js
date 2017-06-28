@@ -989,22 +989,17 @@
                 },
 
                 pickerSwitch: function () {
-                    showMode(1);
+                    showMode(2);
                 },
 
                 selectMonth: function (e) {
-                    var month = $(e.target).closest('tbody').find('span').index($(e.target));
-                    viewDate.month(month);
-                    if (currentViewMode === minViewModeNumber) {
-                        setValue(date.clone().year(viewDate.year()).month(viewDate.month()));
-                        if (!options.inline) {
-                            hide();
-                        }
-                    } else {
-                        showMode(-1);
-                        fillDate();
-                    }
-                    viewUpdate('M');
+                  var month = $(e.target).closest('tbody').find('span').index($(e.target));
+                  viewDate.month(month);
+                  showMode(-2);
+                  fillDate();
+                  viewUpdate('M');
+                  $(e.target).closest('tbody').find('.active').removeClass('active');
+                  $(e.target).addClass("active");
                 },
 
                 selectYear: function (e) {
@@ -1016,7 +1011,7 @@
                             hide();
                         }
                     } else {
-                        showMode(-1);
+                        showMode(-2);
                         fillDate();
                     }
                     viewUpdate('YYYY');
